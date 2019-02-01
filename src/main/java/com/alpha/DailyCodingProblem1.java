@@ -1,8 +1,6 @@
 package com.alpha;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 /**
@@ -15,6 +13,7 @@ import java.util.Set;
  * For example, given [10, 15, 3, 7] and k of 17, return true since 10 + 7 is
  * 17.
  *
+ *  Explanation : https://codereview.stackexchange.com/questions/212621
  */
 public class DailyCodingProblem1 {
     public static void main(String args[]) {
