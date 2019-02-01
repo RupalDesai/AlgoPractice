@@ -1,4 +1,4 @@
-package com.alpha;
+package com.alpha.SortingAlgorithm;
 
 /**
  * Implemention of merge sort

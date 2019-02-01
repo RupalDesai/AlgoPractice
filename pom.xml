@@ -78,7 +78,7 @@
           <manifest>
             <addClasspath>true</addClasspath>
             <classpathPrefix>lib/</classpathPrefix>
-            <mainClass>com.alpha.DailyCodingProblem1</mainClass>
+            <mainClass>com.alpha.problemSolving.DailyCodingProblem1</mainClass>
           </manifest>
         </archive>
       </configuration>

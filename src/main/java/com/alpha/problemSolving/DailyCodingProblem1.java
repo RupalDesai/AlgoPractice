@@ -1,4 +1,4 @@
-package com.alpha;
+package com.alpha.problemSolving;
 
 import java.util.HashSet;
 import java.util.Set;
