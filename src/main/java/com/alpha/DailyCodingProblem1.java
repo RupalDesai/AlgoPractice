@@ -1,7 +1,9 @@
 package com.alpha;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  *
@@ -19,19 +21,17 @@ public class DailyCodingProblem1 {
         int[] arr = { 10, 15, 3, 7 };
         int k = 17;
 
-        Boolean ans = solution(arr, k);
+        boolean ans = solution(arr, k);
         System.out.println(ans);
     }
 
-    private static Boolean solution(int[] arr, int k) {
-        final Map<Integer, Boolean> map = new HashMap<>();
+    private static boolean solution(int[] arr, int k) {
+        final Set<Integer> set = new HashSet<>();
         for (int x : arr) {
-            map.put(k - x, true);
-        }
-        for (int x : arr) {
-            if (Boolean.TRUE.equals(map.get(Integer.valueOf(x)))) {
+            if (Boolean.TRUE.equals(set.contains(x))) {
                 return true;
             }
+            set.add(k-x);
         }
         return false;
     }
