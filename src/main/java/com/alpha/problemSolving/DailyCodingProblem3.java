@@ -26,9 +26,6 @@ static int smallestSubWithSum(int arr[],
     int start = 0, end = 0;
     while (end < n)
     {
-        // Keep adding array
-        // elements while current
-        // sum is smaller than x
         while (curr_sum <= x && end < n)
         {
             if (curr_sum <= 0 && x > 0)
