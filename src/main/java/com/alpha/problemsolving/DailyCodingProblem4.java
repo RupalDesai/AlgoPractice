@@ -1,5 +1,8 @@
 package com.alpha.problemsolving;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /*
 An array of N words is given. Each word consists of small letters ('a'- 'z'). Our goal is to concatenate the words in such a say as to obtain a single word with the longest possible sub-string composed of one particular letter. Find the length of such a sub-string.
 
@@ -19,22 +22,60 @@ class DailyCodingProblem4 {
     }
 
     static void solution(String[] arr) {
-
+        Map<Integer, Integer> prefix = new HashMap<>();
+        Map<Integer, Integer> suffix = new HashMap<>();
+        Map<Integer, Integer> both = new HashMap<>();
         for (int i = 0; i < arr.length; i++) {
             String word = arr[i];
             int j = 1;
-            while (j<word.length() && word.charAt(0) == word.charAt(j)) {
+            while (j < word.length() && word.charAt(0) == word.charAt(j)) {
                 j++;
             }
-            String suffix = word.substring(0, j);
-            j = word.length() - 1;
+            int key = word.charAt(0);
+            if (j == word.length()) {
+                if (both.containsKey(key)) {
+                    Integer temp = both.get(key);
+                    if (j > temp) {
+                        both.put(key, j);
+                    }
+                } else {
+                    both.put(key, j);
+                }
+            } else {
+                if (suffix.containsKey(key)) {
+                    Integer temp = suffix.get(key);
+                    if (j > temp) {
+                        suffix.put(key, j);
+                    }
+                } else {
+                    suffix.put(key, j);
+                }
 
-            while (j>0 && word.charAt(word.length() - 1) == word.charAt(j-1)) {
-                j--;
+                j = word.length() - 1;
+
+                while (j > 0 && word.charAt(word.length() - 1) == word.charAt(j - 1)) {
+                    j--;
+                }
+
+                key = word.charAt(word.length() - 1);
+                if (prefix.containsKey(key)) {
+                    Integer temp = prefix.get(key);
+                    if ( word.length()-j > temp) {
+                        prefix.put(key,  word.length()-j);
+                    }
+                } else {
+                    prefix.put(key,  word.length()-j);
+                }
             }
-
-            String prefix = word.substring(j, word.length());
-            System.out.println("prefix is : " + prefix + " suffix is " + suffix);
+        }
+        int res;
+        for (Integer key : prefix.keySet()) {
+            res = prefix.get(key)*suffix.get(key);
+            if(both.containsKey(key))
+            {
+              int temp=prefix.get(key)*both.get(key);
+              if(temp)
+            }
         }
     }
 }
