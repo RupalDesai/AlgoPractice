@@ -1,4 +1,4 @@
-package com.alpha.problemSolving;
+package com.alpha.problemsolving;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -13,7 +13,7 @@ import java.util.Set;
  * For example, given [10, 15, 3, 7] and k of 17, return true since 10 + 7 is
  * 17.
  *
- *  Explanation : https://codereview.stackexchange.com/questions/212621
+ * Explanation : https://codereview.stackexchange.com/questions/212621
  */
 public class DailyCodingProblem1 {
     public static void main(String args[]) {
@@ -30,7 +30,7 @@ public class DailyCodingProblem1 {
             if (Boolean.TRUE.equals(set.contains(x))) {
                 return true;
             }
-            set.add(k-x);
+            set.add(k - x);
         }
         return false;
     }
