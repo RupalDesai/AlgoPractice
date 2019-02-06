@@ -12,16 +12,18 @@ Examples:
 */
 
 class DailyCodingProblem4 {
-    static int max = 0; // variable : holds largest length of substring
 
     public static void main(String args[]) {
-        String[] array = { "aabb", "aaaa", "bbab" };
+        String[] arr = { "aabb", "aaaa", "bbab" };
+        int res = solution(arr);
+        System.out.println(res);
 
-        solution(array);
-        System.out.println(max);
+        String[] arr2 = { "xxbxx", "xbx", "x" };
+        res = solution(arr2);
+        System.out.println(res);
     }
 
-    static void solution(String[] arr) {
+    private static int solution(String[] arr) {
         Map<Integer, Integer> prefix = new HashMap<>();
         Map<Integer, Integer> suffix = new HashMap<>();
         Map<Integer, Integer> both = new HashMap<>();
@@ -60,22 +62,50 @@ class DailyCodingProblem4 {
                 key = word.charAt(word.length() - 1);
                 if (prefix.containsKey(key)) {
                     Integer temp = prefix.get(key);
-                    if ( word.length()-j > temp) {
-                        prefix.put(key,  word.length()-j);
+                    if (word.length() - j > temp) {
+                        prefix.put(key, word.length() - j);
                     }
                 } else {
-                    prefix.put(key,  word.length()-j);
+                    prefix.put(key, word.length() - j);
                 }
             }
         }
-        int res;
+        int res = 0;
         for (Integer key : prefix.keySet()) {
-            res = prefix.get(key)*suffix.get(key);
-            if(both.containsKey(key))
-            {
-              int temp=prefix.get(key)*both.get(key);
-              if(temp)
+            if (suffix.containsKey(key)) {
+                int temp = prefix.get(key) + suffix.get(key);
+                if (temp > res) {
+                    res = temp;
+                }
+            }
+
+        }
+
+        for (Integer key : suffix.keySet()) {
+            if (prefix.containsKey(key)) {
+                int temp = prefix.get(key) + suffix.get(key);
+                if (temp > res) {
+                    res = temp;
+                }
+            }
+
+        }
+
+        for (Integer key : both.keySet()) {
+            if (prefix.containsKey(key)) {
+                int temp = prefix.get(key) + both.get(key);
+                if (temp > res) {
+                    res = temp;
+                }
+            }
+            if (suffix.containsKey(key)) {
+                int temp = both.get(key) + suffix.get(key);
+                if (temp > res) {
+                    res = temp;
+                }
             }
         }
+
+        return res;
     }
 }
