@@ -21,18 +21,19 @@ class DailyCodingProblem4 {
     static void solution(String[] arr) {
 
         for (int i = 0; i < arr.length; i++) {
-            String word = arr[0];
+            String word = arr[i];
             int j = 1;
-            while (word.charAt(0) == word.charAt(j)) {
+            while (j<word.length() && word.charAt(0) == word.charAt(j)) {
                 j++;
             }
-            String prefix = word.substring(0, j);
-            j = word.length() - 2;
+            String suffix = word.substring(0, j);
+            j = word.length() - 1;
 
-            while (word.charAt(word.length() - 1) == word.charAt(j)) {
+            while (j>0 && word.charAt(word.length() - 1) == word.charAt(j-1)) {
                 j--;
             }
-            String suffix = word.substring(j, word.length() - 1);
+
+            String prefix = word.substring(j, word.length());
             System.out.println("prefix is : " + prefix + " suffix is " + suffix);
         }
     }
