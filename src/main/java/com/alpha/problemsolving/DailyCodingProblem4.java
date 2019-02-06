@@ -11,7 +11,7 @@ Examples:
 class DailyCodingProblem4 {
     static int max = 0; // variable : holds largest length of substring
 
-    public static void main(String[] args) {
+    public static void main(String args[]) {
         String[] array = { "aabb", "aaaa", "bbab" };
 
         solution(array);

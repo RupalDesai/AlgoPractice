@@ -43,7 +43,7 @@ public class DailyCodingProblem3 {
         return min_len;
     }
 
-    public static void main(String[] args) {
+     public static void main(String args[]){
         int arr1[] = { -8, 1, 4, 2, -6 };
         int x = 6;
         int n1 = arr1.length;
