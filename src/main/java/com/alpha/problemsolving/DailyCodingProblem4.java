@@ -31,6 +31,7 @@ class DailyCodingProblem4 {
         Map<Integer, Integer> prefix = new HashMap<>();
         Map<Integer, Integer> suffix = new HashMap<>();
         Map<Integer, Integer> both = new HashMap<>();
+        int[] keys=new int[26];
         for (int i = 0; i < arr.length; i++) {
             String word = arr[i];
             int j = 1;
@@ -38,78 +39,25 @@ class DailyCodingProblem4 {
                 j++;
             }
             int key = word.charAt(0);
+            keys[key%26]=key;
             if (j == word.length()) {
-                if (both.containsKey(key)) {
-                    Integer temp = both.get(key);
-
-                    both.put(key, temp + j);
-
-                } else {
-                    both.put(key, j);
-                }
+                both.put(key, both.getOrDefault(key, 0) + j);
             } else {
-                if (suffix.containsKey(key)) {
-                    Integer temp = suffix.get(key);
-                    if (j > temp) {
-                        suffix.put(key, j);
-                    }
-                } else {
-                    suffix.put(key, j);
-                }
-
+                suffix.put(key, Integer.max(suffix.getOrDefault(key, 0), j));
                 j = word.length() - 1;
-
                 while (j > 0 && word.charAt(word.length() - 1) == word.charAt(j - 1)) {
                     j--;
                 }
-
                 key = word.charAt(word.length() - 1);
-                if (prefix.containsKey(key)) {
-                    Integer temp = prefix.get(key);
-                    if (word.length() - j > temp) {
-                        prefix.put(key, word.length() - j);
-                    }
-                } else {
-                    prefix.put(key, word.length() - j);
-                }
+                keys[key%26]=key;
+                prefix.put(key, Integer.max(suffix.getOrDefault(key, 0), word.length() - j));
             }
         }
         int res = 0;
-        for (Integer key : prefix.keySet()) {
-            if (suffix.containsKey(key)) {
-                int temp = prefix.get(key) + suffix.get(key);
-                if (temp > res) {
-                    res = temp;
-                }
-            }
-
+        for (int key : keys) {
+            res = Integer.max(res,
+                    prefix.getOrDefault(key, 0) + both.getOrDefault(key, 0) + suffix.getOrDefault(key, 0));
         }
-
-        for (Integer key : suffix.keySet()) {
-            if (prefix.containsKey(key)) {
-                int temp = prefix.get(key) + suffix.get(key);
-                if (temp > res) {
-                    res = temp;
-                }
-            }
-
-        }
-
-        for (Integer key : both.keySet()) {
-            if (prefix.containsKey(key)) {
-                int temp = prefix.get(key) + both.get(key);
-                if (temp > res) {
-                    res = temp;
-                }
-            }
-            if (suffix.containsKey(key)) {
-                int temp = both.get(key) + suffix.get(key);
-                if (temp > res) {
-                    res = temp;
-                }
-            }
-        }
-
         return res;
     }
 }
