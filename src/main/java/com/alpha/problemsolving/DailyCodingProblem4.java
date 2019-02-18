@@ -21,6 +21,10 @@ class DailyCodingProblem4 {
         String[] arr2 = { "xxbxx", "xbx", "x" };
         res = solution(arr2);
         System.out.println(res);
+
+        String[] arr3 = { "xxxxx", "xxx", "xxbxx" };
+        res = solution(arr3);
+        System.out.println(res);
     }
 
     private static int solution(String[] arr) {
@@ -37,9 +41,9 @@ class DailyCodingProblem4 {
             if (j == word.length()) {
                 if (both.containsKey(key)) {
                     Integer temp = both.get(key);
-                    if (j > temp) {
-                        both.put(key, j);
-                    }
+
+                    both.put(key, temp + j);
+
                 } else {
                     both.put(key, j);
                 }
