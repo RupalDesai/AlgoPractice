@@ -8,6 +8,8 @@ Given an array of integers, find the first missing positive integer in linear ti
 For example, the input [3, 4, -1, 1] should give 2. The input [1, 2, 0] should give 3.
 
 You can modify the input array in-place.
+
+Explanation: https://codereview.stackexchange.com/questions/213785
 */
 
 class DailyCodingProblem5 {
@@ -15,6 +17,10 @@ class DailyCodingProblem5 {
     public static void main(String args[]) {
         int[] arr = { 3, 4, -1, 1 };
         int res = solution(arr);
+        System.out.println(res);
+
+        int[] arr2 = { 1, 2, 0 };
+        res = solution(arr2);
         System.out.println(res);
     }
 
@@ -26,7 +32,7 @@ class DailyCodingProblem5 {
 
             if (val <= 0 || val > n)
                 continue;
-            while (val != arr[val-1]) {
+            while (val != arr[val - 1]) {
                 int nextval = arr[val - 1];
                 arr[val - 1] = val;
                 val = nextval;

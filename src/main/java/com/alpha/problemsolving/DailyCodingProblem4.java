@@ -9,6 +9,8 @@ An array of N words is given. Each word consists of small letters ('a'- 'z'). Ou
 Examples:
 1. Given N=3 and words=['aabb','aaaa','bbab'], your function should return 6. One of the best concatenations is words[1]+words[0]+words[2]='aaaaaabbbbab'. The longest sub-string is composed of the letter 'a' and its length is 6.
 2. Given N=3 and words=['xxbxx','xbx','x'], your function should return 4. One of the best concatenations is words[0]+words[2]+words[1]='xxbxxxxbx'. The longest sub-string is composed of letter 'x' and its length is 4.
+
+Explanation: https://codereview.stackexchange.com/questions/213689
 */
 
 class DailyCodingProblem4 {
