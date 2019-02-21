@@ -16,27 +16,35 @@ Explanation: https://codereview.stackexchange.com/questions/213943
 class DailyCodingProblem7 {
 
     public static void main(String args[]) {
-        String message = "111";
-        int res = solution(message);
+        String message = "11111111";
+        int n=message.length();
+        Integer[] ways=new Integer[n+1];
+        int res = solution(message,n,ways);
         System.out.println(res);
 
-        message = "1234";
-        res = solution(message);
-        System.out.println(res);
-
-        message = "121";
-        res = solution(message);
-        System.out.println(res);
     }
 
-    private static int solution(String message) {
-        int count = 1;
-        for (int i = 0; i < message.length() - 1; i++) {
-            if (Integer.valueOf(message.substring(i, i + 2)) <= 26) {
-                count++;
-            }
+    private static int solution(String message,int k,Integer[] ways) {
+        int n=message.length();
+        if(k==0)
+        {
+            return 1;
         }
-        return count;
+        if((int)message.charAt(n-k)==0)
+        {
+            return 0;
+        }
+
+        if(ways[k]!=null)
+        {
+            System.out.println(k+" : " +ways[k]);
+            return ways[k];
+        }
+        ways[k]=solution(message,k-1,ways);
+        if(k>=2 && Integer.valueOf(message.substring(n-k,n-k+2))<26)
+        ways[k]+=solution(message,k-2,ways);
+        return ways[k];
+
     }
 
 }
