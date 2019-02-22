@@ -16,33 +16,32 @@ Explanation: https://codereview.stackexchange.com/questions/213943
 class DailyCodingProblem7 {
 
     public static void main(String args[]) {
-        String message = "11111111";
-        int n=message.length();
-        Integer[] ways=new Integer[n+1];
-        int res = solution(message,n,ways);
+        String message = "2625";
+        int n = message.length();
+        int[] ways = new int[n + 1];
+        int res = solution(message, n, ways);
         System.out.println(res);
 
     }
 
-    private static int solution(String message,int k,Integer[] ways) {
-        int n=message.length();
-        if(k==0)
-        {
+    private static int solution(String message, int k, int[] ways) {
+        int n = message.length();
+        if (k == 0) {
             return 1;
         }
-        if((int)message.charAt(n-k)==0)
-        {
+        // Check if character is 0
+        if ((int) message.charAt(n - k) == 48) {
             return 0;
         }
 
-        if(ways[k]!=null)
-        {
-            System.out.println(k+" : " +ways[k]);
+        if (ways[k] != 0) {
+            System.out.println(k + " : " + ways[k]);
             return ways[k];
         }
-        ways[k]=solution(message,k-1,ways);
-        if(k>=2 && Integer.valueOf(message.substring(n-k,n-k+2))<26)
-        ways[k]+=solution(message,k-2,ways);
+        ways[k] = solution(message, k - 1, ways);
+        if (k >= 2 && (int) message.charAt(n - k) == 50 && (int) message.charAt(n - k + 1) <= 54) {
+            ways[k] += solution(message, k - 2, ways);
+        }
         return ways[k];
 
     }
