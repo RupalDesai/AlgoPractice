@@ -18,35 +18,59 @@ class DailyCodingProblem9 {
         int res = solution(arr);
         System.out.println(res);
 
-        int arr1[] = { 1, 0, 3, 9, 2, 14 };
+        int arr1[] = { 1, 9, 3, 14, 6, 8 };
         res = solution(arr1);
         System.out.println(res);
     }
 
-    static int solution(int[] arr) {
+    // Using Memorization with space as O(n)
+    static int solution1(int[] arr) {
         int n = arr.length;
-        int[] maxArr = new int[n];
-        int max = 0;
-        for (int i = n - 1; i > 0; i--) {
-            maxArr[i] = findLargestSum(arr, i, n, maxArr);
-            max = Math.max(max, maxArr[i]);
+        int[] max = new int[n];
+        if (n == 0) {
+            return 0;
         }
-        return max;
+        if (n == 1) {
+            return arr[0];
+        }
+        if (n == 2) {
+            return Math.max(arr[0], arr[1]);
+
+        } else {
+            max[0] = arr[0];
+            max[1] = Math.max(arr[0], arr[1]);
+            for (int i = 2; i < n; i++) {
+                max[i] = Math.max(max[i - 1], arr[i] + max[i - 2]);
+            }
+            return max[n - 1];
+
+        }
 
     }
 
-    static int findLargestSum(int[] arr, int i, int n, int[] max) {
-        System.out.println(i);
-        if (max[i] != 0) {
-            return max[i];
+    // Using Memorization with space as O(1)
+    static int solution(int[] arr) {
+        int n = arr.length;
+        if (n == 0) {
+            return 0;
         }
-        if (i == 0 || i == 1) {
-            return arr[i];
+        if (n == 1) {
+            return arr[0];
         }
-        if (i - 2 == 0) {
-            return arr[i] + findLargestSum(arr, i - 2, n, max);
+        if (n == 2) {
+            return Math.max(arr[0], arr[1]);
+
+        } else {
+            int max0 = arr[0];
+            int max1 = Math.max(arr[0], arr[1]);
+            for (int i = 2; i < n; i++) {
+                int temp = max1;
+                max1 = Math.max(max1, arr[i] + max0);
+                max0 = temp;
+            }
+            return max1;
+
         }
-        return arr[i] + Integer.max(findLargestSum(arr, i - 2, n, max), findLargestSum(arr, i - 3, n, max));
 
     }
 

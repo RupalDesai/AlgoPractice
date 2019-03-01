@@ -37,12 +37,7 @@ class DailyCodingProblem8 {
         */
 
         tree = new BinaryTree();
-        tree.root = new Node(5);
-        tree.root.left = new Node(4);
-        tree.root.right = new Node(5);
-        tree.root.left.left = new Node(4);
-        tree.root.left.right = new Node(4);
-        tree.root.right.right = new Node(5);
+        tree.root = new Node(5,new Node(4,new Node(4),new Node(4)),new Node(5,null,new Node(5)));
         res = tree.countUnivalTrees(tree.root);
         System.out.println(res);
 
