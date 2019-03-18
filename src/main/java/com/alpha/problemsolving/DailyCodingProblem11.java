@@ -1,5 +1,8 @@
 package com.alpha.problemsolving;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /*
 This problem was asked by Twitter.
 
@@ -14,14 +17,68 @@ class DailyCodingProble11 {
 
     public static void main(String args[]) {
 
-        String[] res = solution("do");
-        for (String string : res) {
-            System.out.println(string);
+        String[] words = { "dog", "deer", "deal" };
+        Trie trie = new Trie();
+        for (String word : words) {
+            trie.insert(word);
+        }
+        trie.search("de", trie.root, 0).stream().forEach(word -> System.out.println(word));
+    }
+}
+
+class TrieNode {
+    public Character node;
+    public TrieNode[] children = new TrieNode[26];
+    public boolean isWord;
+
+    TrieNode(Character ch) {
+        this.node = ch;
+    }
+}
+
+class Trie {
+    TrieNode root;
+
+    Trie() {
+        root = new TrieNode('*');
+    }
+
+    public void insert(String word) {
+        TrieNode currentNode = root;
+        for (int i = 0; i < word.length(); i++) {
+            Character ch = word.charAt(i);
+            if (currentNode.children[ch - 'a'] == null) {
+                currentNode.children[ch - 'a'] = new TrieNode(ch);
+            }
+            currentNode = currentNode.children[ch - 'a'];
+
+        }
+        currentNode.isWord = true;
+    }
+
+    public List<String> search(String searchTxt, TrieNode currentNode, int index) {
+        List<String> results = new ArrayList<>();
+        Character ch = searchTxt.charAt(index);
+        if (root.children[ch - 'a'] == null) {
+            return results;
+        }
+        if (index == searchTxt.length() - 1) {
+            findWords(currentNode, new StringBuilder(), results);
+            return results;
+        }
+        return search(searchTxt, currentNode, ++index);
+    }
+
+    public void findWords(TrieNode currentNode, StringBuilder sb, List<String> results) {
+
+        for (TrieNode child : currentNode.children) {
+            if (child != null) {
+                sb.append(child.node);
+                if (child.isWord == true) {
+                    results.add(sb.toString());
+                }git remo
+                findWords(child, sb, results);
+            }
         }
     }
-
-    static String[] solution(String search) {
-        return null;
-    }
-
 }
