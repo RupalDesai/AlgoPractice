@@ -23,6 +23,7 @@ class DailyCodingProble11 {
             trie.insert(word);
         }
         trie.search("de", trie.root, 0).stream().forEach(word -> System.out.println(word));
+        trie.search("do", trie.root, 0).stream().forEach(word -> System.out.println(word));
     }
 }
 
@@ -59,11 +60,12 @@ class Trie {
     public List<String> search(String searchTxt, TrieNode currentNode, int index) {
         List<String> results = new ArrayList<>();
         Character ch = searchTxt.charAt(index);
-        if (root.children[ch - 'a'] == null) {
+        if (currentNode.children[ch - 'a'] == null) {
             return results;
         }
+        currentNode = currentNode.children[ch - 'a'];
         if (index == searchTxt.length() - 1) {
-            findWords(currentNode, new StringBuilder(), results);
+            findWords(currentNode, new StringBuilder(searchTxt), results);
             return results;
         }
         return search(searchTxt, currentNode, ++index);
@@ -73,11 +75,10 @@ class Trie {
 
         for (TrieNode child : currentNode.children) {
             if (child != null) {
-                sb.append(child.node);
                 if (child.isWord == true) {
-                    results.add(sb.toString());
-                }git remo
-                findWords(child, sb, results);
+                    results.add(sb.append(child.node).toString());
+                }
+                findWords(child, new StringBuilder(sb).append(child.node), results);
             }
         }
     }
