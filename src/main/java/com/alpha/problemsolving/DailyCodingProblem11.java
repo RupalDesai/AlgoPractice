@@ -28,12 +28,12 @@ class DailyCodingProble11 {
 }
 
 class TrieNode {
-    public Character node;
+    public Character content;
     public TrieNode[] children = new TrieNode[26];
     public boolean isWord;
 
     TrieNode(Character ch) {
-        this.node = ch;
+        this.content = ch;
     }
 }
 
@@ -76,9 +76,9 @@ class Trie {
         for (TrieNode child : currentNode.children) {
             if (child != null) {
                 if (child.isWord == true) {
-                    results.add(sb.append(child.node).toString());
+                    results.add(sb.append(child.content).toString());
                 }
-                findWords(child, new StringBuilder(sb).append(child.node), results);
+                findWords(child, new StringBuilder(sb).append(child.content), results);
             }
         }
     }
