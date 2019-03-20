@@ -5,12 +5,10 @@ import java.util.List;
 
 /*
 This problem was asked by Twitter.
-
 Implement an autocomplete system. That is, given a query string s and a set of all possible query strings, return all strings in the set that have s as a prefix.
-
 For example, given the query string de and the set of strings [dog, deer, deal], return [deer, deal].
-
 Hint: Try preprocessing the dictionary into a more efficient data structure to speed up queries.
+Explanation: https://codereview.stackexchange.com/questions/215813
 */
 
 class DailyCodingProble11 {
@@ -58,13 +56,13 @@ class Trie {
     }
 
     public List<String> search(String searchTxt, TrieNode currentNode, int index) {
-        List<String> results = new ArrayList<>();
         Character ch = searchTxt.charAt(index);
         if (currentNode.children[ch - 'a'] == null) {
-            return results;
+            return null;
         }
         currentNode = currentNode.children[ch - 'a'];
         if (index == searchTxt.length() - 1) {
+            List<String> results = new ArrayList<>();
             findWords(currentNode, new StringBuilder(searchTxt), results);
             return results;
         }
