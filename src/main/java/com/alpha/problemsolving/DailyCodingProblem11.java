@@ -24,7 +24,7 @@ class DailyCodingProble11 {
         }
         trie.search("de", trie.root, 0).forEach(word -> System.out.println(word));
         trie.search("do", trie.root, 0).forEach(word -> System.out.println(word));
-
+        // Test Improved solution
         Trie2 trie2 = new Trie2(Arrays.asList(words));
         trie2.search("de").forEach(word -> System.out.println(word));
         trie2.search("do").forEach(word -> System.out.println(word));
