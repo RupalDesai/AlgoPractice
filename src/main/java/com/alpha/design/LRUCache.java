@@ -13,6 +13,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LRUCache {
+
+    final class Node {
+        int value;
+        int key;
+        Node prev;
+        Node next;
+
+        public Node(int value, int key) {
+            this.value = value;
+            this.key = key;
+        }
+    }
+
     Map<Integer, Node> mapOfNodes;
     Node lastNode;
     Node firstNode;
@@ -85,20 +98,6 @@ public class LRUCache {
         lru.set(2, 5);
         lru.get(1);
         lru.set(3, 6);
-    }
-
-}
-
-class Node {
-    int value;
-    int key;
-    Node prev;
-    Node next;
-
-    public Node(int value, int key) {
-        super();
-        this.value = value;
-        this.key = key;
     }
 
 }
