@@ -1,6 +1,6 @@
 # AlgoPractice
 
-Daily coding problem and optimised solutions reviewed by best in stackoverflow
+Daily coding problem and optimised solutions reviewed by best in Stackoverflow
 
 
 The project includes solution for following projects:
