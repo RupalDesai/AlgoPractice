@@ -16,4 +16,16 @@ function findPair(arr: number[], k: number) {
     }
 }
 
-console.log(findPair([10, 15, 3, 7], 17));
+function triplet(arr: number[], k: number) {
+    for (let i = 0; i < arr.length - 2; i++) {
+        let first = arr[i];
+        let res = findPair([...arr].splice(i), k - first);
+        if (res) {
+            console.log(first, ...res)
+        }
+    }
+
+}
+
+triplet([10, 15, 3, 7, 7], 17);
+console.log(...findPair([10, 15, 3, 7], 17));
