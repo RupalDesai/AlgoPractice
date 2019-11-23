@@ -1,18 +1,27 @@
 /*
-Given a string, return the sum of the numbers appearing in the string, ignoring all other characters. A number is a series of 1 or more digit chars in a row. (Note: Character.isDigit(char) tests if a char is one of the chars '0', '1', .. '9'. Integer.parseInt(string) converts a string to an int.)
+Given a non-empty array, return true if there is a place to split the array so that the sum of the numbers on one side is equal to the sum of the numbers on the other side.
 
-sumNumbers("abc123xyz") → 123
-sumNumbers("aa11b33") → 44
-sumNumbers("7 11") → 18
+canBalance([1, 1, 1, 2, 1]) → true
+canBalance([2, 1, 1, 2, 1]) → false
+canBalance([10, 10]) → true
 */
 
-function sumNumbers(str: string) {
-    let sum = 0;
-    str.match(/\d+/g).map((num) => sum = sum + Number(num));
-    console.log(sum);
+function canBalance(arr: number[]) {
+    let i = 0, j = arr.length - 2;
+    let leftSum = arr[0], rightSum = arr[arr.length - 1];
+    while (i < j) {
+        if (leftSum < rightSum) {
+            leftSum += arr[++i];
+        } else {
+            rightSum += arr[j];
+            j--;
+        }
+
+    }
+    let res = leftSum === rightSum ? true : false;
+    console.log(res, leftSum, rightSum);
 }
 
-sumNumbers("abc123xyz");
-sumNumbers("aa11b33");
-sumNumbers("7 11");
-
+canBalance([1, 1, 1, 2, 1]);
+canBalance([2, 1, 1, 2, 1]);
+canBalance([10, 10]);
