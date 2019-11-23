@@ -8,7 +8,20 @@ maxSpan([1, 2, 4, 1, 4, 1, 4]) → 6
 maxSpan([1, 4, 2, 1, 4, 4, 4]) → 6
 */
 
+// Another Solution
+function maxSpan2(arr: number[]) {
+    let lowerIndexMap = new Map();
+    let maxSpan = 0;
+    for (let i = 0; i < arr.length; i++) {
+        if (lowerIndexMap.has(arr[i])) {
+            maxSpan = Math.max(maxSpan, i - lowerIndexMap.get(arr[i]) + 1);
+        } else {
+            lowerIndexMap.set(arr[i], i)
+        }
+    }
 
+    console.log(maxSpan);
+}
 
 function maxSpan(ele: number[]) {
     let memory = new Array<number>(ele.length);
