@@ -9,26 +9,27 @@ For example, the message '111' would give 3, since it could be decoded as 'aaa',
 
 You can assume that the messages are decodable. For example, '001' is not allowed.
 */
-
-
-function noOfWaysToDecode(n: number) {
+function noOfWaysToDecode(n: number, map: Map<number,number>) {
     if (n <= 9)
         return 1;
-    else {
+    else if (map.get(n)) {
+        return map.get(n);
+    } else {
         if (n % 100 < 27) {
-            return noOfWaysToDecode(Math.floor(n / 10)) + noOfWaysToDecode(Math.floor(n / 100));
+            let res = noOfWaysToDecode(Math.floor(n / 10), map) + noOfWaysToDecode(Math.floor(n / 100), map);
+            map.set(n, res);
+            return res;
         }
         else {
-            return noOfWaysToDecode(Math.floor(n / 10)) + 1;
+            let res = noOfWaysToDecode(Math.floor(n / 10), map) + 1;
+            map.set(n, res);
+            return res;
         }
     }
 }
 
-console.log(noOfWaysToDecode(111));
-console.log(noOfWaysToDecode(121));
-console.log(noOfWaysToDecode(1234));
-console.log(noOfWaysToDecode(12345));
-console.log(noOfWaysToDecode(11111));
-
-
-
+console.log(noOfWaysToDecode(111, new Map()));
+console.log(noOfWaysToDecode(121, new Map()));
+console.log(noOfWaysToDecode(1234, new Map()));
+console.log(noOfWaysToDecode(12345, new Map()));
+console.log(noOfWaysToDecode(11111, new Map()));
