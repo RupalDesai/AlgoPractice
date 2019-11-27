@@ -1,0 +1,61 @@
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+public/
+*.orig
+test-output/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.log
+*.ipr
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+### Eclipse ###
+.metadata
+bin/
+
+### Angular/npm ###
+*.ng_pkg_build
+node_modules
+.sass-cache
+connect.lock
+coverage
+libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+typings
+.npmrc
+test-results
+
+### VSCode ###
+.vscode
+
+### System Files ###
+.DS_Store
+Thumbs.db
+
+### sonar ###
+.scannerwork
+.sonar
+
+.settings/**
+**/*.js
