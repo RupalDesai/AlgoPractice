@@ -22,10 +22,10 @@ public class DailyCodingProblem16 {
         }
         System.out.println(lruCache.get_last(0));
         System.out.println(lruCache.get_last(3));
-        //Should be 4
-         System.out.println(lruCache.get_last(0));
-         //Should be 5
-         System.out.println(lruCache.get_last(3));
+        // Should be 4
+        System.out.println(lruCache.get_last(0));
+        // Should be 5
+        System.out.println(lruCache.get_last(3));
     }
 
     final static class LRUCache {
@@ -82,18 +82,4 @@ public class DailyCodingProblem16 {
             return node.order_id;
         }
     }
-
-    public static final LRUCache2
-    {
-        private lruCache;
-     LRUCache2(final int maxSize) {
-     lruccahe=new LinkedHashMap<K, V>(maxSize*4/3, 0.75f, true) {
-        @Override
-        protected boolean removeEldestEntry(Map.Entry<K, V> eldest) {
-            return size() > maxSize;
-        }
-    };
-}
-    }
-
 }
