@@ -1,7 +1,7 @@
 /*  Return a new sorted merged list from K sorted lists, each with size N. */
 let arr1 = [1, 3, 6];
-let arr2 = [4, 5, 7];
-let arr3 = [2, 8, 9];
+let arr2 = [4, 5, 7, 10, 12];
+let arr3 = [2, 8, 9, 11];
 
 let list = [arr1, arr2, arr3];
 
@@ -22,32 +22,44 @@ function heapify(index: number) {
             swap(parent, index);
         }
         heapify(parent);
+
     }
 
 }
 function mergedList(List: number[][]) {
+    //Initialize a empty mergedlist
     let mergedList: number[] = [];
-    let i = 0, j = 0, k = 0;
-    arr[0] = [list[0][i], 0];
-    arr[1] = [list[1][j], 1];
-    arr[2] = [list[2][k], 2];
-    while (i < list[0].length || j < list[1].length || k < list[2].length) {
+    //Add first element from each list to (min-heap )array
+    arr[0] = [list[0].shift(), 0];
+    arr[1] = [list[1].shift(), 1];
+    arr[2] = [list[2].shift(), 2];
+    //While all the list are not empty
+    while (list[0].length > 0 || list[1].length > 0 || list[2].length > 0) {
+        //heapfiy the array arr
         heapify(arr.length - 1);
+        //remove the top most element. In Min heap top  most element will be the smallest
         let temp = arr.shift();
-        console.log(arr);
+        //Push the smallest element into mergedList
         mergedList.push(temp[0]);
-        switch (temp[1]) {
-            case 0: i++;
-                arr.push(list[temp[1][i]]); break;
-            case 1: j++;
-                arr.push(list[temp[1][j]]); break;
-            case 2: k++;
-                arr.push(list[temp[1][k]]); break;
+        //If the list from which the first element belongs to is not empty
+        if (list[temp[1]].length > 0) {
+            switch (temp[1]) {
+                case 0:
+                    // remove the first element and add it to arr
+                    arr.push([list[temp[1]].shift(), 0]); break;
+                case 1:
+                    arr.push([list[temp[1]].shift(), 1]); break;
+                case 2:
+                    arr.push([list[temp[1]].shift(), 2]); break;
+            }
         }
 
     }
-    console.log(mergedList);
+    while (arr.length > 0) {
+        mergedList.push(arr.shift()[0]);
+    }
 
+    console.log(mergedList);
 
 }
 

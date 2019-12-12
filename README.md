@@ -38,4 +38,5 @@ The project includes solution for following projects:
 - **There exists a staircase with N steps, and you can climb up either 1 or 2 steps at a time. Given N, write a function that returns the number of unique ways you can climb the staircase. The order of the steps matters. [Solution](https://github.com/macleanpinto/AlgoPractice/blob/master/src/main/typescript/DailyCodingProblem12.ts)**
 - **Given an integer k and a string s, find the length of the longest substring that contains at most k distinct characters. [Solution](https://github.com/macleanpinto/AlgoPractice/blob/master/src/main/typescript/DailyCodingProblem13.ts)**
 - **Given the root to a binary tree, return the deepest node. [Solution](https://github.com/macleanpinto/AlgoPractice/blob/master/src/main/typescript/DailyCodingProblem-TreeProblem.ts#L35)**
-- **Implement Min Heap. [Solution](https://github.com/macleanpinto/AlgoPractice/blob/master/src/main/typescript/DailyCodingProblem-TreeProblem.ts.ts)
+- **Implement Min Heap. [Solution](https://github.com/macleanpinto/AlgoPractice/blob/master/src/main/typescript/DailyCodingProblem-TreeProblem.ts.ts)**
+- **Return a new sorted merged list from K sorted lists, each with size N. [Solution](https://github.com/macleanpinto/AlgoPractice/blob/master/src/main/typescript/DailyCodingProblem-MergeList.ts)**
