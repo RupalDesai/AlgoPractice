@@ -40,3 +40,4 @@ The project includes solution for following projects:
 - **Given the root to a binary tree, return the deepest node. [Solution](https://github.com/macleanpinto/AlgoPractice/blob/master/src/main/typescript/DailyCodingProblem-TreeProblem.ts#L35)**
 - **Implement Min Heap. [Solution](https://github.com/macleanpinto/AlgoPractice/blob/master/src/main/typescript/DailyCodingProblem-TreeProblem.ts.ts)**
 - **Return a new sorted merged list from K sorted lists, each with size N. [Solution](https://github.com/macleanpinto/AlgoPractice/blob/master/src/main/typescript/DailyCodingProblem-MergeList.ts)**
+- **Given a stream of elements too large to store in memory, pick a random element from the stream with uniform probability. [Solution](https://github.com/macleanpinto/AlgoPractice/blob/master/src/main/typescript/DailyCodingProblem15.ts)**
