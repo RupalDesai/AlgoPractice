@@ -39,17 +39,26 @@ In java we cant do shift
 let j = 0;
 let orders2: number[] = Array(10);
 function record2(order_id) {
-    orders2[j % 10] = order_id;
+    if (j == 10) {
+        j = 0;
+    }
+    orders2[j] = order_id;
     j++;
 }
 
 function get_last2(m) {
-    return orders2[10-m-1];
+    let index = j - m;
+    if (index < 0) {
+        return orders2[index + 10]
+    }
+    else {
+        return orders2[index];
+    }
 }
 
 for (let k = 0; k < 15; k++) {
     record2(k);
 }
-console.log(get_last2(0));
+console.log(get_last2(6));
 
 console.log(orders2);
