@@ -38,20 +38,89 @@ The name of a file contains at least a period and an extension.
 The name of a directory or sub-directory will not contain a period.
 
 */
+/*
+Solution
 
+Build a file system object that would parse dir\n\tsubdir1\n\t\tfile1.ext\n\t\tsubsubdir1\n\tsubdir2\n\t\tsubsubdir2\n\t\t\tfile2.ext into
+
+{
+    "dir": {
+        "subdir1": {
+            "file1.ext": True,
+            "subsubdir1": {}
+        },
+        "subdir2": {
+            "subsubdir2": {
+                "file2.ext": True
+            }
+        }
+    }
+}
+
+Then we can traverse every dir and retrieve the longest path recursively
+*/
 
 function build_fs(str: string) {
 
     let fs = {};
+    //split into a directories
+    let dir = str.split('\n');
+    //This will track the latest folder
+    let cur_path = [dir[0]];
+    //Initialise the first directory in file system object
+    fs[dir[0]] = {};
 
-    let files = str.split('\n');
-    let cur_path = files[0];
-    fs[files[0]] = {};
-    for (let i = 1; i < files.length; i++) {
-        fs[cur_path] = files[i];
+    for (let i = 1; i < dir.length; i++) {
+        //Split each directory into subdirectories
+        let subdir = dir[i].split('\t');
+        // count the no of subdirectories
+        let noOfSubdir = subdir.length - 1;
+
+        //new directory or file
+        let file = subdir[noOfSubdir];
+
+        //traverse the fs to reach the current directory
+        let cur_node = fs;
+        for (let j = 0; j < noOfSubdir; j++) {
+            cur_node = cur_node[cur_path[j]];
+        }
+        //Is a files 
+        if (file.indexOf('.') > 0) {
+            //add the file to current directory
+            cur_node[file] = true;
+        } else {
+            //is a directory add the directory to the current directory and reset the current path to point the sub directory
+            cur_node[file] = {};
+            cur_path[noOfSubdir] = file;
+        }
+
     }
-
-console.log(fs);
+    return fs;
 }
 
-build_fs("dir\n\tsubdir1\n\t\tfile1.ext\n\t\tsubsubdir1\n\tsubdir2\n\t\tsubsubdir2\n\t\t\tfile2.ext");
+
+function longest_path(fs) {
+    let maxpath = '';
+    if (fs !== undefined) {
+        //For each dir in the fs
+        Object.keys(fs).forEach(key => {
+            let path = ''
+
+            // If its a file
+            if (key.indexOf('.') > 0) {
+                path = key;
+            }
+            //If its a directory recurisvely fetch the longest path
+            else {
+                path = key + '/' + longest_path(fs[key]);
+            }
+            //When the path contains a file, if if the path is greater than current max path
+            if (path.indexOf('.') > 0) {
+                maxpath = maxpath.length > path.length ? maxpath : path;
+            }
+
+        });
+    }
+    return maxpath;
+}
+console.log(longest_path(build_fs("dir\n\tsubdir1\n\t\tfile1.ext\n\t\tsubsubdir1\n\t\t\tfile23.ext\n\tsubdir2\n\t\tsubsubdir2\n\t\t\tfile2.ext")));

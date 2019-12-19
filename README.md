@@ -41,3 +41,5 @@ The project includes solution for following projects:
 - **Implement Min Heap. [Solution](https://github.com/macleanpinto/AlgoPractice/blob/master/src/main/typescript/DailyCodingProblem-TreeProblem.ts.ts)**
 - **Return a new sorted merged list from K sorted lists, each with size N. [Solution](https://github.com/macleanpinto/AlgoPractice/blob/master/src/main/typescript/DailyCodingProblem-MergeList.ts)**
 - **Given a stream of elements too large to store in memory, pick a random element from the stream with uniform probability. [Solution](https://github.com/macleanpinto/AlgoPractice/blob/master/src/main/typescript/DailyCodingProblem15.ts)**
+- **You run an e-commerce website and want to record the last N order ids in a log. [Solution](https://github.com/macleanpinto/AlgoPractice/blob/master/src/main/typescript/DailyCodingProblem16.ts)**
+- **Given a string representing the file system in the above format, return the length of the longest absolute path to a file in the abstracted file system. [Solution](https://github.com/macleanpinto/AlgoPractice/blob/master/src/main/typescript/DailyCodingProblem17.ts)**
