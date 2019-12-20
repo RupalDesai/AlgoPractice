@@ -44,4 +44,4 @@ The project includes solution for following projects:
 - **You run an e-commerce website and want to record the last N order ids in a log. [Solution](https://github.com/macleanpinto/AlgoPractice/blob/master/src/main/typescript/DailyCodingProblem16.ts)**
 - **Given a string representing the file system in the above format, return the length of the longest absolute path to a file in the abstracted file system. [Solution](https://github.com/macleanpinto/AlgoPractice/blob/master/src/main/typescript/DailyCodingProblem17.ts)**
 - **Given an array of integers and a number k, where 1 <= k <= length of the array, compute the maximum values of each subarray of length k. [Solution](https://github.com/macleanpinto/AlgoPractice/blob/master/src/main/typescript/DailyCodingProblem18.ts)**
-
+- **Given an N by K matrix where the nth row and kth column represents the cost to build the nth house with kth color, return the minimum cost which achieves this goal. [Solution](https://github.com/macleanpinto/AlgoPractice/blob/master/src/main/typescript/DailyCodingProblem19.ts)**
