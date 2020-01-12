@@ -30,7 +30,7 @@ class Coordinate {
     }
 }
 
-function walkable(row: number, col: number, board: [][]) {
+function walkable(row: number, col: number, board: string[][]) {
     if (row < 0 || row > board[0].length) {
         return false;
     }
@@ -41,13 +41,13 @@ function walkable(row: number, col: number, board: [][]) {
 
 }
 
-function get_walkable_neighbour(row: number, col: number, board: [][]) {
+function get_walkable_neighbours(cord: Coordinate, board: string[][]) {
 
     let neighbours = [
-        new Coordinate(row, col - 1),
-        new Coordinate(row, col + 1),
-        new Coordinate(row - 1, col),
-        new Coordinate(row + 1, col)];
+        new Coordinate(cord.x, cord.y - 1),
+        new Coordinate(cord.x, cord.y + 1),
+        new Coordinate(cord.x - 1, cord.y),
+        new Coordinate(cord.x + 1, cord.y)];
     return neighbours.map((cord: Coordinate) => {
         if (walkable(cord.x, cord.y, board)) {
             return cord;
@@ -64,4 +64,5 @@ function minStepsRequired(start: Coordinate, end: Coordinate) {
         ['f', 'f', 'f', 'f'],
         ['f', 'f', 'f', 'f']];
 
+    let walkable_neighbour = get_walkable_neighbours(start, board)
 }
