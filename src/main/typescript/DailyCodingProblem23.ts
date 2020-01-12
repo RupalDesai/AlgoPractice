@@ -28,6 +28,9 @@ class Coordinate {
     public get y() {
         return this.y;
     }
+    public equals(coord:Coordinate){
+        return this.x=coord.x&& this.y=coord.y;
+    }
 }
 
 function walkable(row: number, col: number, board: string[][]) {
@@ -40,17 +43,33 @@ function walkable(row: number, col: number, board: string[][]) {
     return board[row][col] === 'f' ? false : true;
 
 }
+function count_steps(start:Coordinate,end:Coordinate){
+    if(start.equals(end)){
+        return 0;
+    }
+     let walkable_neighbours=get_walkable_neighbours(coord);
+     if(walkable_neighbours.length===0){
+         return null;
+     }
+     let steps_required=99999;
+     for(coord:coordinate in walkable_neighbours){
+         steps_taken=count_steps(coord,end)
+       steps_required= steps_required>
+     }
+    
+  
+}
 
-function get_walkable_neighbours(cord: Coordinate, board: string[][]) {
+function get_walkable_neighbours(coord: Coordinate, board: string[][]) {
 
     let neighbours = [
-        new Coordinate(cord.x, cord.y - 1),
-        new Coordinate(cord.x, cord.y + 1),
-        new Coordinate(cord.x - 1, cord.y),
-        new Coordinate(cord.x + 1, cord.y)];
-    return neighbours.map((cord: Coordinate) => {
-        if (walkable(cord.x, cord.y, board)) {
-            return cord;
+        new Coordinate(coord.x, coord.y - 1),
+        new Coordinate(coord.x, coord.y + 1),
+        new Coordinate(coord.x - 1, coord.y),
+        new Coordinate(coord.x + 1, coord.y)];
+    return neighbours.map((coord: Coordinate) => {
+        if (walkable(coord.x, coord.y, board)) {
+            return coord;
         }
     });
 
