@@ -16,48 +16,27 @@ and start = (3, 0) (bottom left) and end = (0, 0) (top left), the minimum number
 */
 
 class Coordinate {
-    private _x: number;
-    private _y: number;
+    public x: number;
+    public y: number;
     constructor(x: number, y: number) {
-        this._x = x;
-        this._y = y;
+        this.x = x;
+        this.y = y;
     }
-    public get x() {
-        return this.x;
-    }
-    public get y() {
-        return this.y;
-    }
-    public equals(coord:Coordinate){
-        return this.x=coord.x&& this.y=coord.y;
+
+    public equals(coord: Coordinate) {
+        return this.x === coord.x && this.y === coord.y;
     }
 }
 
-function walkable(row: number, col: number, board: string[][]) {
-    if (row < 0 || row > board[0].length) {
+function walkable(coord: Coordinate, board: string[][]) {
+    if (coord.x < 0 || coord.x > board.length - 1) {
         return false;
     }
-    if (col < 0 || col > board[0].length) {
+    if (coord.y < 0 || coord.y > board[0].length - 1) {
         return false;
     }
-    return board[row][col] === 'f' ? false : true;
+    return board[coord.x][coord.y] === 'f' ? true : false;
 
-}
-function count_steps(start:Coordinate,end:Coordinate){
-    if(start.equals(end)){
-        return 0;
-    }
-     let walkable_neighbours=get_walkable_neighbours(coord);
-     if(walkable_neighbours.length===0){
-         return null;
-     }
-     let steps_required=99999;
-     for(coord:coordinate in walkable_neighbours){
-         steps_taken=count_steps(coord,end)
-       steps_required= steps_required>
-     }
-    
-  
 }
 
 function get_walkable_neighbours(coord: Coordinate, board: string[][]) {
@@ -67,21 +46,42 @@ function get_walkable_neighbours(coord: Coordinate, board: string[][]) {
         new Coordinate(coord.x, coord.y + 1),
         new Coordinate(coord.x - 1, coord.y),
         new Coordinate(coord.x + 1, coord.y)];
-    return neighbours.map((coord: Coordinate) => {
-        if (walkable(coord.x, coord.y, board)) {
-            return coord;
-        }
-    });
+    return neighbours.filter((coord: Coordinate) => walkable(coord, board));
 
 }
 
-function minStepsRequired(start: Coordinate, end: Coordinate) {
-    let visited: Map<Coordinate, boolean> = new Map();
+function minimun_steps_required(start: Coordinate, end: Coordinate, visited, board: string[][]) {
+
+    let queue: [[Coordinate, number]] = [[start, 0]];
+    visited[start.x][start.y] = true;
+
+    while (queue.length > 0) {
+
+        //console.log(queue);
+        let [coord, count] = queue.shift();
+       
+        visited[coord.x][coord.y] = true;
+        let walkable_neighbours = get_walkable_neighbours(coord, board).filter(coord => !visited[coord.x][coord.y]);
+        for (let i = 0; i < walkable_neighbours.length; i++) {
+            console.log(coord,walkable_neighbours[i], count + 1);
+            queue.push([walkable_neighbours[i], count + 1]);
+
+        }
+    }
+
+}
+function get_minimun_steps_required(start: Coordinate, end: Coordinate) {
     let board =
         [['f', 'f', 'f', 'f'],
         ['t', 't', 'f', 't'],
         ['f', 'f', 'f', 'f'],
         ['f', 'f', 'f', 'f']];
 
-    let walkable_neighbour = get_walkable_neighbours(start, board)
+    let visited = new Array(board.length).fill(false);
+    for (let i = 0; i < board.length; i++) {
+        visited[i] = new Array(board[0].length).fill(false);;
+    }
+
+    console.log(minimun_steps_required(start, end, visited, board));
 }
+get_minimun_steps_required(new Coordinate(3, 0), new Coordinate(0, 0));
