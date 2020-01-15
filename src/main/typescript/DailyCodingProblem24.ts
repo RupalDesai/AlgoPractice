@@ -83,4 +83,14 @@ function un_lock(node: BinaryTree) {
 
 console.log(lock(tree.left.left));
 console.log(lock(tree.right.left));
-console.log(lock(tree.left));
+console.log(lock(tree.left)); 
+console.log(un_lock(tree.left));
+
+console.log(is_locked(tree.left.left));
+console.log(is_locked(tree.right.left));
+
+console.log(un_lock(tree.left.left));
+console.log(un_lock(tree.right.left));
+
+console.log(is_locked(tree.left.left));
+console.log(is_locked(tree.right.left));
